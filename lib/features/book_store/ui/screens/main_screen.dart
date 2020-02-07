@@ -13,11 +13,16 @@ class MainScreen extends StatefulWidget{
 class _MainScreenState extends State<MainScreen>{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return BlocBuilder<MainBloc,MainState>(
 
       builder:(context,state){
-        return Scaffold();
+        return Scaffold(
+          appBar: AppBar(
+            actions: <Widget>[],
+          ),
+
+        );
     }
 
     );

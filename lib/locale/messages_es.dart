@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "isbn10": MessageLookupByLibrary.simpleMessage("Isbn10"),
     "isbn13": MessageLookupByLibrary.simpleMessage("Isbn13"),
     "description": MessageLookupByLibrary.simpleMessage("Descripcción"),
-
+    "noMoreBooks": MessageLookupByLibrary.simpleMessage("No hay mas libros"),
 
   };
 }

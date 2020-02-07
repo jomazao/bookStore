@@ -96,6 +96,10 @@ class AppLocalization {
     return Intl.message(
       'description',
     );
+  }  String get noMoreBooks {
+    return Intl.message(
+      'noMoreBooks',
+    );
   }
 
 

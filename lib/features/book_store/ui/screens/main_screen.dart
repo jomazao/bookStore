@@ -6,6 +6,7 @@ import 'package:book_store/features/book_store/blocs/main/main_bloc.dart';
 import 'package:book_store/features/book_store/blocs/main/main_state.dart';
 import 'package:book_store/features/book_store/models/Book.dart';
 import 'package:book_store/features/book_store/ui/widgets/book_widget.dart';
+import 'package:book_store/locale/app_localization.dart';
 import 'package:book_store/util/helpers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,6 +74,10 @@ class _MainScreenState extends State<MainScreen> {
       }
       if(state is NoMoreBooks){
         search=false;
+        final snackBar = SnackBar(content: Text(AppLocalization().noMoreBooks));
+
+// Find the Scaffold in the widget tree and use it to show a SnackBar.
+        Scaffold.of(context).showSnackBar(snackBar);
       }
 
       return Scaffold(

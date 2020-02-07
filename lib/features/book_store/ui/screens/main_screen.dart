@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext buildContext) {
     return BlocConsumer<MainBloc, MainState>(listener: (context, state) {
       if (state is LoadingBookDetails) {
         changeRoute(context, Routes.booDetails, false);
@@ -74,10 +74,7 @@ class _MainScreenState extends State<MainScreen> {
       }
       if(state is NoMoreBooks){
         search=false;
-        final snackBar = SnackBar(content: Text(AppLocalization().noMoreBooks));
 
-// Find the Scaffold in the widget tree and use it to show a SnackBar.
-        Scaffold.of(context).showSnackBar(snackBar);
       }
 
       return Scaffold(

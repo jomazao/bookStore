@@ -15,8 +15,6 @@ class SplashScreen extends StatelessWidget{
     WidgetsBinding.instance
         .addPostFrameCallback((_) =>changeRoute(context,Routes.onBoarding,true));
 
-
-
     return Text("");
   }
 

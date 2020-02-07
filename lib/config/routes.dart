@@ -7,6 +7,7 @@ import 'package:book_store/config/route_handlers.dart';
 class Routes {
   static String root = "/";
   static String onBoarding="/onBoarding";
+  static String main="/main";
 
 
   static void configureRoutes(Router router) {
@@ -19,6 +20,6 @@ class Routes {
 
     router.define(onBoarding, handler: OnBoardingHandler);
 
-
+    router.define(main, handler: MainHandler);
   }
 }

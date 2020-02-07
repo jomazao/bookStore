@@ -25,6 +25,23 @@ class AppLocalization {
     );
   }
 
+  String get onBoardingMessage1 {
+    return Intl.message(
+      'onBoardingMessage1',
+    );
+  }
+  String get onBoardingMessage2 {
+    return Intl.message(
+      'onBoardingMessage2',
+    );
+  }
+
+  String get start {
+    return Intl.message(
+      'start',
+    );
+  }
+
 
 }
 

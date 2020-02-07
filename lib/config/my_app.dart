@@ -1,15 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:book_store/features/book_store/blocs/main/main_bloc.dart';
 import 'package:book_store/styles/theme.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:book_store/locale/app_localization.dart';
 
 import 'application.dart';
 import 'routes.dart';
-
-
-
 
 class MyApp extends StatefulWidget {
   @override
@@ -18,17 +17,15 @@ class MyApp extends StatefulWidget {
   }
 }
 
-
 class _MyAppState extends State<MyApp> {
+  AppLocalizationDelegate localeOverrideDelegate =
+      AppLocalizationDelegate(Locale('en', 'EN'));
 
-  AppLocalizationDelegate localeOverrideDelegate = AppLocalizationDelegate(Locale('en', 'EN'));
-
-  _MyAppState () {
+  _MyAppState() {
     final router = Router();
     Routes.configureRoutes(router);
     Application.router = router;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +42,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: [const Locale('es'), const Locale('es')],
     );
 //    print("initial route = ${app.initialRoute}");
-    return app;
+    return BlocProvider(
+        create: (BuildContext context) => MainBloc(), child: app);
   }
 }

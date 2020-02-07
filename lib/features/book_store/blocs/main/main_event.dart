@@ -14,3 +14,18 @@ class LoadMainScreen extends MainEvent{
 
 
 }
+
+class LoadNewReleases extends MainEvent{
+
+  @override
+  List<Object> get props => null;
+
+}
+class SearchByWord extends MainEvent{
+
+  int page;
+
+  @override
+  List<Object> get props => null;
+}
+

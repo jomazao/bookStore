@@ -41,7 +41,11 @@ class AppLocalization {
       'start',
     );
   }
-
+  String get information {
+    return Intl.message(
+      'information',
+    );
+  }
 
 }
 

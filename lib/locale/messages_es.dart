@@ -17,6 +17,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "onBoardingMessage2": MessageLookupByLibrary.simpleMessage("Obtén la información detallada de cada libro antes de hacer tu compra"),
 
     "start": MessageLookupByLibrary.simpleMessage("Empezar"),
+    "information": MessageLookupByLibrary.simpleMessage("Información"),
 
   };
 }

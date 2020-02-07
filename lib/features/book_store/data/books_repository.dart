@@ -18,3 +18,15 @@ Future<List<Book>> getNewReleases() async{
   return   books;
 
 }
+
+Future<Book> getBookDetails(String isbn13) async{
+
+  var url="${BASE_URL}/books/${isbn13}";
+
+  var response = await http.post(url);
+  Map responseData=  json.decode(response.body);
+  return Book.fromJson(responseData);
+
+
+
+}

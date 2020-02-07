@@ -19,5 +19,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "start": MessageLookupByLibrary.simpleMessage("Empezar"),
     "information": MessageLookupByLibrary.simpleMessage("Información"),
 
+    "price": MessageLookupByLibrary.simpleMessage("Precio"),
+    "raiting": MessageLookupByLibrary.simpleMessage("Puntaje"),
+    "authors": MessageLookupByLibrary.simpleMessage("Autores"),
+    "publisher": MessageLookupByLibrary.simpleMessage("Publicador"),
+    "pages": MessageLookupByLibrary.simpleMessage("Páginas"),
+    "language": MessageLookupByLibrary.simpleMessage("Lenguaje"),
+    "isbn10": MessageLookupByLibrary.simpleMessage("Isbn10"),
+    "isbn13": MessageLookupByLibrary.simpleMessage("Isbn13"),
+
   };
 }

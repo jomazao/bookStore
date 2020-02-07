@@ -22,8 +22,6 @@ class DotIndicator extends StatelessWidget{
           width: 1.0
         )
 
-
-
       ),
     );;
   }

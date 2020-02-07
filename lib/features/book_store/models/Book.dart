@@ -1,18 +1,18 @@
 class Book {
-  String title;
-  String subTitle;
-  String authors;
-  String publisher;
-  String language;
-  String isbn10;
-  String isbn13;
+  String title="";
+  String subTitle="";
+  String authors="";
+  String publisher="";
+  String language="";
+  String isbn10="";
+  String isbn13="";
   int pages;
   int year;
-  int rating;
-  String desc;
-  String price;
-  String image;
-  String url;
+  int raiting;
+  String desc="";
+  String price="";
+  String image="";
+  String url="";
 
   Book(
       {this.title,
@@ -24,7 +24,7 @@ class Book {
       this.isbn13,
       this.pages,
       this.year,
-      this.rating,
+      this.raiting,
       this.desc,
       this.image,
       this.price,
@@ -40,9 +40,9 @@ class Book {
     this.language=json['language'];
     this.isbn10=json['isbn10'];
     this.isbn13=json['isbn13'];
-    this.pages=json['pages'];
-    this.year=json['year'];
-    this.rating=json['rating'];
+    this.pages=int.tryParse(json['pages']);
+    this.year=int.tryParse(json['year']);
+    this.raiting=int.tryParse(json['rating']);
     this.desc=json['desc'];
     this.image=json['image'];
     this.price=json['price'];
@@ -61,7 +61,7 @@ class Book {
         "isbn13" : isbn13,
         "pages" : pages,
         "year" : year,
-        "rating" : rating,
+        "raiting" : raiting,
         "desc" : desc,
         "image" : image,
         "price" : price,

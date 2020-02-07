@@ -2,32 +2,35 @@ import 'package:book_store/features/book_store/models/Book.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class MainState extends Equatable {
-
-
-   MainState();
+  MainState();
 
   @override
   List<Object> get props => [];
 }
 
-class AppStart extends MainState{
+class AppStart extends MainState {}
 
-}
-class LoadingMainScreen extends MainState{
+class LoadingMainScreen extends MainState {}
 
-}
-
-class LoadingBooks extends MainState{
-
-}
+class LoadingBooks extends MainState {}
 
 class LoadedBooks extends MainState {
-
   List<Book> books;
   LoadedBooks(this.books);
+}
+
+class NoMoreBooks extends MainState {}
+
+class LoadingBookDetails extends MainState {
+  Book book;
+  LoadingBookDetails(this.book);
+
 
 }
 
-class NoMoreBooks extends MainState {
+class LoadedBookDetails extends MainState {
+  Book book;
+  LoadedBookDetails(this.book);
+
 
 }

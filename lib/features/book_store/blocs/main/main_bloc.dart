@@ -25,6 +25,11 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         print(e);
         yield NoMoreBooks();
       }
+    } else if (event is LoadBookDetails) {
+      yield LoadingBookDetails(event.book);
+      Book book=await getBookDetails(event.book.isbn13);
+      yield LoadedBookDetails(book);
+
     }
   }
 }

@@ -46,6 +46,53 @@ class AppLocalization {
       'information',
     );
   }
+  String get price {
+    return Intl.message(
+      'price',
+    );
+  }
+
+  String get raiting {
+    return Intl.message(
+      'raiting',
+    );
+  }
+
+  String get author {
+    return Intl.message(
+      'author',
+    );
+  }
+  String get publisher {
+    return Intl.message(
+      'publisher',
+    );
+  }
+
+  String get pages {
+    return Intl.message(
+      'pages',
+    );
+  }
+
+  String get language {
+    return Intl.message(
+      'language',
+    );
+  }
+
+  String get isbn10 {
+    return Intl.message(
+      'isbn10',
+    );
+  }
+
+  String get isbn13 {
+    return Intl.message(
+      'isbn13',
+    );
+  }
+
 
 }
 

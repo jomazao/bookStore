@@ -6,3 +6,10 @@ A book store app, for for bees2biz Technical test
 
 This projects use BloC architecture for state managment, further implements clean architecture to order the files and folders structure.
 
+Steps to reproduce locally:
+
+pub get
+
+flutter run
+
+

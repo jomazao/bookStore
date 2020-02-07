@@ -41,6 +41,7 @@ class _MainScreenState extends State<MainScreen> {
 
   void _scrollListener() {
     if (controller.position.extentAfter < 500 && query.length > 1 && search) {
+      search=false;
       BlocProvider.of<MainBloc>(context).add(SearchByWord(query, false));
     }
   }
@@ -71,6 +72,7 @@ class _MainScreenState extends State<MainScreen> {
     }, builder: (context, state) {
       if (state is LoadedBooks) {
         _books = state.books;
+        search=true;
       }
       if(state is NoMoreBooks){
         search=false;

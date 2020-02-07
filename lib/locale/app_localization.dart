@@ -5,7 +5,6 @@ import 'messages_all.dart';
 class AppLocalization {
 
 
-
   static Future<AppLocalization> load(Locale locale) {
     // final String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
     final String localeName = "es"; //Intl.canonicalizedLocale(name);
@@ -90,6 +89,12 @@ class AppLocalization {
   String get isbn13 {
     return Intl.message(
       'isbn13',
+    );
+  }
+
+  String get description {
+    return Intl.message(
+      'description',
     );
   }
 

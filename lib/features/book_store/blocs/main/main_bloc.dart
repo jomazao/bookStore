@@ -26,6 +26,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         yield NoMoreBooks();
       }
     } else if (event is LoadBookDetails) {
+      //print("book:" +event.book.toJson().toString());
       yield LoadingBookDetails(event.book);
       Book book=await getBookDetails(event.book.isbn13);
       yield LoadedBookDetails(book);

@@ -24,9 +24,13 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<MainBloc, MainState>(builder: (context, state) {
 
-      if(state is LoadBookDetails){
-        book= state.props[0];
+      if(state is LoadingBookDetails  ){
+        book= state.book;
       }
+      if(state is LoadedBookDetails){
+        book= state.book;
+      }
+      print("aquí"+book.toJson().toString());
 
         print(state.props);
       return Scaffold(
@@ -34,18 +38,28 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
           title: Text(book.title),
         ),
         body: ListView(
-          children: <Widget>[
 
-            detail(AppLocalization().price,book.price),
-            detail(AppLocalization().raiting,"${book.raiting}"),
-            detail(AppLocalization().author,book.authors),
-            detail(AppLocalization().publisher,book.publisher),
-            //detail(AppLocalization().published,book.publ),
-            detail(AppLocalization().pages,"${book.pages}"),
-            detail(AppLocalization().language,book.language),
-            //detail(AppLocalization().format,book.format),
-            detail(AppLocalization().isbn10,book.isbn10),
-            detail(AppLocalization().isbn13,book.isbn13),
+          shrinkWrap: true,
+          children: <Widget>[
+            Image.network(book.image,height:250,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(children: <Widget>[
+                detail(AppLocalization().price,book.price),
+                detail(AppLocalization().raiting,"${book.raiting}"),
+                detail(AppLocalization().author,book.authors),
+                detail(AppLocalization().publisher,book.publisher),
+                //detail(AppLocalization().published,book.publ),
+                detail(AppLocalization().pages,"${book.pages}"),
+                detail(AppLocalization().language,book.language),
+                //detail(AppLocalization().format,book.format),
+                detail(AppLocalization().isbn10,book.isbn10),
+                detail(AppLocalization().isbn13,book.isbn13),
+                Align(child: Text(AppLocalization().description,style: Theme.of(context).textTheme.title,)),
+               Text(book.desc)
+              ],),
+            )
+
 
 
 
@@ -56,11 +70,15 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
   }
 
   Widget detail(String title,String text){
-      Row(children: <Widget>[
+   return    Align(
+     child: Row(
+       
+            children: <Widget>[
 
-        Flexible(flex:2,child: Text(title)),
-        Flexible(flex:8,child: Text(text))
+          Flexible(flex:3,child: Text("${title}:",style: Theme.of(context).textTheme.title,)),
+          Flexible(flex:7,child: Text(text!=null?text:""))
 
-      ],);
+        ],),
+   );
   }
 }

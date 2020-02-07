@@ -5,6 +5,7 @@ import 'package:book_store/features/book_store/models/Book.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
   List<Book> books;
+  int actualPage;
   MainBloc() {
     books = List();
   }
@@ -19,22 +20,51 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     } else if (event is LoadNewReleases) {
       yield LoadingBooks();
       try {
-        List<Book> books = await getNewReleases();
-        yield LoadedBooks(books);
+        List<Book> booksFounded = await getNewReleases();
+        if (event.clear){
+
+          books=booksFounded;
+          yield LoadedBooks(books);
+        }else{
+          books.addAll(booksFounded);
+
+          yield LoadedBooks(books);
+        }
+
+
       } catch (e) {
         print(e);
         yield NoMoreBooks();
       }
     } else if (event is LoadBookDetails) {
-      //print("book:" +event.book.toJson().toString());
       yield LoadingBookDetails(event.book);
       Book book=await getBookDetails(event.book.isbn13);
       yield LoadedBookDetails(book);
 
     }else if (event is SearchByWord){
       yield LoadingBooks();
-      List<Book> books = await getBooksByQuery(event.query,event.page);
-      yield LoadedBooks(books);
+      if(event.clear){
+        actualPage=1;
+      }
+      List<Book> booksFounded = await getBooksByQuery(event.query,actualPage  );
+
+      if(booksFounded.length==0){
+        yield NoMoreBooks();
+      }else{
+        actualPage++;
+        if (event.clear){
+          books=booksFounded;
+
+          yield LoadedBooks(books);
+        }else{
+          books.addAll(booksFounded);
+
+          yield LoadedBooks(books);
+        }
+      }
+
+
+
     }
   }
 }

@@ -20,27 +20,44 @@ class _MainScreenState extends State<MainScreen> {
 
   final _searchQuery = new TextEditingController();
   Timer _debounce;
+  ScrollController controller;
+  bool search=true;
+  int actualPage;
+  String query;
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<MainBloc>(context).add(LoadNewReleases());
+    BlocProvider.of<MainBloc>(context).add(LoadNewReleases(false));
+    actualPage = 1;
+
     _books = new List();
     super.initState();
+    query = "";
     _searchQuery.addListener(_onSearchChanged);
+    controller = new ScrollController()..addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    if (controller.position.extentAfter < 500 && query.length > 1 && search) {
+      BlocProvider.of<MainBloc>(context).add(SearchByWord(query, false));
+    }
   }
 
   _onSearchChanged() {
     if (_debounce?.isActive ?? false) _debounce.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
-      final String query=_searchQuery.text;
-      if(query.length>1){
-        BlocProvider.of<MainBloc>(context).add(SearchByWord(query,1));
-      }else{
-        BlocProvider.of<MainBloc>(context).add(LoadNewReleases());
+
+
+      if (query != _searchQuery.text) {
+        query = _searchQuery.text;
+        if (query.length > 1) {
+          BlocProvider.of<MainBloc>(context).add(SearchByWord(query, true));
+          search=true;
+        } else {
+          BlocProvider.of<MainBloc>(context).add(LoadNewReleases(true));
+        }
       }
-
-
     });
   }
 
@@ -54,6 +71,9 @@ class _MainScreenState extends State<MainScreen> {
       if (state is LoadedBooks) {
         _books = state.books;
       }
+      if(state is NoMoreBooks){
+        search=false;
+      }
 
       return Scaffold(
         appBar: AppBar(
@@ -66,6 +86,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: ListView(
           shrinkWrap: true,
+          controller: controller,
           children: <Widget>[
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
@@ -83,7 +104,7 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  List<BookWidget> addBookWidgets(List<Book> books) {
+  addBookWidgets(List<Book> books) {
     List<BookWidget> bookWidgets = new List();
     for (Book book in books) {
       bookWidgets.add(BookWidget(
@@ -91,6 +112,7 @@ class _MainScreenState extends State<MainScreen> {
         action: () => this.showBookDetails(book),
       ));
     }
+
     return bookWidgets;
   }
 

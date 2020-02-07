@@ -11,6 +11,10 @@ class LoadMainScreen extends MainEvent {
 }
 
 class LoadNewReleases extends MainEvent {
+
+  final bool clear;
+
+  LoadNewReleases(this.clear);
   @override
   List<Object> get props => null;
 }
@@ -27,7 +31,8 @@ class SearchByWord extends MainEvent {
 
   int page;
   String query;
-  SearchByWord(this.query,this.page);
+  bool clear;
+  SearchByWord(this.query, this.clear);
 
   @override
   List<Object> get props => [query,page];

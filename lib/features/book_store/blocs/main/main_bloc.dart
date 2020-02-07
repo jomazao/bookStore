@@ -30,6 +30,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       Book book=await getBookDetails(event.book.isbn13);
       yield LoadedBookDetails(book);
 
+    }else if (event is SearchByWord){
+      yield LoadingBooks();
+      List<Book> books = await getBooksByQuery(event.query,event.page);
+      yield LoadedBooks(books);
     }
   }
 }

@@ -33,7 +33,13 @@ class _MainScreenState extends State<MainScreen> {
   _onSearchChanged() {
     if (_debounce?.isActive ?? false) _debounce.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
-      print("enviar");
+      final String query=_searchQuery.text;
+      if(query.length>1){
+        BlocProvider.of<MainBloc>(context).add(SearchByWord(query,1));
+      }else{
+        BlocProvider.of<MainBloc>(context).add(LoadNewReleases());
+      }
+
 
     });
   }

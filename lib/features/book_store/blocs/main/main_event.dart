@@ -24,8 +24,11 @@ class LoadBookDetails extends MainEvent {
 }
 
 class SearchByWord extends MainEvent {
+
   int page;
+  String query;
+  SearchByWord(this.query,this.page);
 
   @override
-  List<Object> get props => null;
+  List<Object> get props => [query,page];
 }

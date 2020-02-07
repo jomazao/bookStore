@@ -6,24 +6,61 @@ const BASE_URL="https://api.itbook.store/1.0";
 
 Future<List<Book>> getNewReleases() async{
 
+  try{
   var url="${BASE_URL}/new";
 
-  var response = await http.post(url);
+  var response = await http.get(url);
 
 
   Map responseData=  json.decode(response.body);
   List booksJson=  responseData["books"];
-  List<Book> books=booksJson.map((bookJson)=>Book.fromJson(bookJson)).toList();
+  List<Book> books=List();
+  if(booksJson.length>0){
+    books=booksJson.map((bookJson)=>Book.fromJson(bookJson)).toList();
+  }
 
   return   books;
 
+  }
+  catch(e,stacktrace){
+    print ("error1: ${e}");
+    print (stacktrace);
+    return List();
+  }
+
 }
+
+Future<List<Book>> getBooksByQuery(String query, int page) async{
+
+  try{
+    var url="${BASE_URL}/search/${query}?page=${page}";
+
+    var response = await http.get(url);
+
+
+    Map responseData=  json.decode(response.body);
+    List booksJson=  responseData["books"];
+    List<Book> books=List();
+    if(booksJson.length>0){
+      books=booksJson.map((bookJson)=>Book.fromJson(bookJson)).toList();
+    }
+
+    return   books;
+  }
+  catch(e){
+    print ("error: ${e}");
+    return List();
+  }
+
+
+}
+
 
 Future<Book> getBookDetails(String isbn13) async{
 
   var url="${BASE_URL}/books/${isbn13}";
 
-  var response = await http.post(url);
+  var response = await http.get(url);
   Map responseData=  json.decode(response.body);
   return Book.fromJson(responseData);
 

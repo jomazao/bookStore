@@ -40,9 +40,9 @@ class Book {
     this.language=json['language'];
     this.isbn10=json['isbn10'];
     this.isbn13=json['isbn13'];
-    this.pages=int.tryParse(json['pages']);
-    this.year=int.tryParse(json['year']);
-    this.raiting=int.tryParse(json['rating']);
+    this.pages=json['pages']!=null?int.tryParse(json['pages']):0;
+    this.year=json['year']!=null?int.tryParse(json['year']):0;
+    this.raiting=json['rating']!=null?int.tryParse(json['rating']):0;
     this.desc=json['desc'];
     this.image=json['image'];
     this.price=json['price'];
